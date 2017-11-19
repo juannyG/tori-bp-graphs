@@ -31,7 +31,7 @@
             low: low,
             ts: ts.getTime()
         };
-        $.post("/bp-data", payload, createSuccess, 'json');
+	setTimeout($.post, 1000, "/bp-data", payload, createSuccess, 'json');
     }
 
     $(document).ready(function(){
