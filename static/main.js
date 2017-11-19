@@ -4,6 +4,10 @@
         $('#timestampInput').val(ts.toDateString());
     }
 
+    function createSuccess() {
+        location.reload();
+    }
+
     function createBPEntry() {
         var high = $('#highInput').val();
         var low = $('#lowInput').val();
@@ -13,8 +17,7 @@
             low: low,
             ts: ts.getTime()
         };
-        console.log(payload);
-        //location.reload();
+        $.post("/bp-data", payload, createSuccess, 'json');
     }
 
     $(document).ready(function(){
