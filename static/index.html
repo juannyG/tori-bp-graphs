@@ -13,16 +13,8 @@
     </head>
     <body>
         <div class="uk-container">
-            <div class="uk-card uk-card-default uk-card-body">
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
                 <ul uk-accordion>
-                    <li class="uk-open">
-                        <!-- Graph -->
-                        <h3 class="uk-accordion-title">Graph of Blood Pressure Over Time</h3>
-                        <div class="uk-accordion-content">
-                            <canvas id="myChart"></canvas>
-                            <script src="bpchart.js"></script>
-                        </div>
-                    </li>
 
                     <!-- Data input -->
                     <li>
@@ -33,17 +25,33 @@
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="form-horizontal-text">High</label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="form-horizontal-text" type="number" placeholder="120">
+                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="number" placeholder="120">
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="form-horizontal-text">Low</label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="form-horizontal-text" type="number" placeholder="80">
+                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="number" placeholder="80">
                                         </div>
                                     </div>
+                                    <button id="submit" class="uk-button uk-button-default">Submit</button>
                                 </fieldset>
                             </form>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+ 
+            <br/>
+
+            <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+                <ul uk-accordion>
+                    <!-- Graph -->
+                    <li class="uk-open">
+                        <h3 class="uk-accordion-title">Graph of Blood Pressure Over Time</h3>
+                        <div class="uk-accordion-content">
+                            <canvas id="myChart"></canvas>
+                            <script src="bpchart.js"></script>
                         </div>
                     </li>
                 </ul>
