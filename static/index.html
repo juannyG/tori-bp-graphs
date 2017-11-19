@@ -10,6 +10,15 @@
 
         <!-- ChartJS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
+        <!-- jquery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- Blood pressure graph -->
+        <script src="bpchart.js"></script>
+
+        <!-- Page -->
+        <script src="main.js"></script>
     </head>
     <body>
         <div class="uk-container">
@@ -25,16 +34,22 @@
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="form-horizontal-text">High</label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="number" placeholder="120">
+                                            <input class="uk-input uk-form-width-small" id="highInput" type="number" value="120">
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="form-horizontal-text">Low</label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input uk-form-width-small" id="form-horizontal-text" type="number" placeholder="80">
+                                            <input class="uk-input uk-form-width-small" id="lowInput" type="number" value="80">
                                         </div>
                                     </div>
-                                    <input type="button" id="submit" class="uk-button uk-button-primary" value="Submit">
+                                    <div class="uk-margin">
+                                        <label class="uk-form-label" for="form-horizontal-text">Date</label>
+                                        <div class="uk-form-controls">
+                                            <input id="timestampInput" class="uk-input uk-width-1-6" type="datetime" disabled>
+                                        </div>
+                                    </div>
+                                    <input type="button" id="createBPButton" class="uk-button uk-button-primary" value="Submit">
                                 </fieldset>
                             </form>
                         </div>
@@ -51,7 +66,6 @@
                         <h3 class="uk-accordion-title">Graph of Blood Pressure Over Time</h3>
                         <div class="uk-accordion-content">
                             <canvas id="myChart"></canvas>
-                            <script src="bpchart.js"></script>
                         </div>
                     </li>
                 </ul>
