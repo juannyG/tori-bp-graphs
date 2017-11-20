@@ -29,8 +29,8 @@
         UIkit.accordion($('#addBPAccordion')).toggle();
     }
 
-    function _postFailure() {
-	      modalsAPI.showFailureModal();
+    function _postFailure(data) {
+        modalsAPI.showFailureModal(data.responseJSON);
     }
 
     $(document).ready(function(){

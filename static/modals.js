@@ -1,17 +1,26 @@
 var modalsAPI = (function () {
     var spinnerModal, doneModal, failureModal;
+    var errorText;
 
     function initModals() {
         spinnerModal = UIkit.modal($('#spinnerModal'));
         doneModal = UIkit.modal($('#doneModal'));
         failureModal = UIkit.modal($('#failureModal'));
+        errorText = $('#errorText');
     }
 
     function showSpinnerModal() {
         spinnerModal.show();
     }
 
-    function showFailureModal() {
+    function showFailureModal(message) {
+        var errors = [];
+        for (key in message) {
+            if (message.hasOwnProperty(key)) {
+                errors.push(key + ": " + message[key]);
+            }
+        }
+        errorText.text(errors.join("\n"));
         failureModal.show();
     }
 
