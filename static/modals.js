@@ -19,10 +19,15 @@ var modalsAPI = (function () {
         doneModal.show();
     }
 
+    function hideDoneModal() {
+        doneModal.hide();
+    }
+
     return {
         initModals: initModals,
         showSpinnerModal: showSpinnerModal,
         showFailureModal: showFailureModal,
-        showDoneModal: showDoneModal
+        showDoneModal: showDoneModal,
+        hideDoneModal: hideDoneModal
     };
 })();

@@ -6,16 +6,16 @@
 
     function createBPEntry() {
         modalsAPI.showSpinnerModal();
-        var high = $('#highInput').val();
-        var low = $('#lowInput').val();
+        var systolic = $('#systolicInput').val();
+        var diastolic = $('#diastolicInput').val();
         var ts = new Date();
         var payload = {
-            high: high,
-            low: low,
+            systolic: systolic,
+            diastolic: diastolic,
             ts: ts.getTime()
         };
 
-	      setTimeout(_postBP, 1000, payload);
+        setTimeout(_postBP, 1000, payload);
     }
 
     function _postBP(payload) {
@@ -24,7 +24,8 @@
 
     function _postSuccess() {
         modalsAPI.showDoneModal();
-        setTimeout(doneModal.hide, 2000);
+        bpChartAPI.render();
+        setTimeout(modalsAPI.hideDoneModal, 2000);
     }
 
     function _postFailure() {
@@ -34,7 +35,7 @@
     $(document).ready(function(){
         setTimestamp();
         modalsAPI.initModals();
-        bpChartAPI.render();
+        bpChartAPI.init();
         $('#createBPButton').click(createBPEntry);
     });
 })();
