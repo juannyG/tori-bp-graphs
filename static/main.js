@@ -26,6 +26,7 @@
         modalsAPI.showDoneModal();
         bpChartAPI.render();
         setTimeout(modalsAPI.hideDoneModal, 2000);
+        UIkit.accordion($('#addBPAccordion')).toggle();
     }
 
     function _postFailure() {
