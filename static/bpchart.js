@@ -34,7 +34,7 @@ var bpChartAPI = (function () {
     }
 
     function renderChart() {
-        $.get('/bp-data', _getSuccess).fail(_getFailure);
+        $.get('/api/bp-data', _getSuccess).fail(_getFailure);
     }
 
     function dateDisplay(ts) {

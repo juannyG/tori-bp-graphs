@@ -19,7 +19,7 @@
     }
 
     function _postBP(payload) {
-	      $.post("/bp-data", payload, _postSuccess, 'json').fail(_postFailure);
+	      $.post("/api/bp-data", payload, _postSuccess, 'json').fail(_postFailure);
     }
 
     function _postSuccess() {
