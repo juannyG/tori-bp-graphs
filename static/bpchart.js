@@ -1,7 +1,11 @@
-(function () {
-    function initBPChart() {
+var bpChartAPI = (function () {
+    var chart = new Chart($('#bpChart'));
+
+    function renderChart() {
+        $.get('/bp-data', _getSuccess).fail(_getFailure);
+
         new Chart(
-            document.getElementById("myChart"), {
+            chart, {
                 "type":"line",
                 "data": {
                     "labels": ["January","February","March","April","May","June","July"],
@@ -23,7 +27,15 @@
         );
     }
 
-    $(document).ready(function(){
-        initBPChart();
-    });
+    function _getSuccess(response) {
+        console.log(response);
+    }
+
+    function _getFailure() {
+        console.log("pooped");
+    }
+
+    return {
+        render: renderChart
+    };
 })();

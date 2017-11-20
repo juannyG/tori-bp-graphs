@@ -1,18 +1,11 @@
 (function () {
-    var spinnerModal, doneModal;
-
     function setTimestamp() {
         var ts = new Date();
         $('#timestampInput').val(ts.toDateString());
     }
 
-    function initModals() {
-        spinnerModal = UIkit.modal($('#spinnerModal'));
-        doneModal = UIkit.modal($('#doneModal'));
-    }
-
     function createBPEntry() {
-        showSpinnerModal();
+        modalsAPI.showSpinnerModal();
         var high = $('#highInput').val();
         var low = $('#lowInput').val();
         var ts = new Date();
@@ -22,30 +15,26 @@
             ts: ts.getTime()
         };
 
-        // TODO: handle failure state with failure modal
-	setTimeout(_postBP, 1000, payload);
-    }
-
-    function showSpinnerModal() {
-        spinnerModal.show();
+	      setTimeout(_postBP, 1000, payload);
     }
 
     function _postBP(payload) {
-	$.post("/bp-data", payload, _postSuccess, 'json').fail(_postFailure);
+	      $.post("/bp-data", payload, _postSuccess, 'json').fail(_postFailure);
     }
 
     function _postSuccess() {
-        doneModal.show();
+        modalsAPI.showDoneModal();
         setTimeout(doneModal.hide, 2000);
     }
 
     function _postFailure() {
-	failureModal.show();
+	      modalsAPI.showFailureModal();
     }
 
     $(document).ready(function(){
         setTimestamp();
-        initModals();
+        modalsAPI.initModals();
+        bpChartAPI.render();
         $('#createBPButton').click(createBPEntry);
     });
 })();
