@@ -11,16 +11,6 @@
         doneModal = UIkit.modal($('#doneModal'));
     }
 
-    function createSuccess() {
-        doneModal.show();
-        setTimeout(doneModal.hide, 2000);
-    }
-
-    function showSpinnerModal() {
-        spinnerModal.show();
-        setTimeout(createSuccess, 2000);
-    }
-
     function createBPEntry() {
         showSpinnerModal();
         var high = $('#highInput').val();
@@ -31,7 +21,26 @@
             low: low,
             ts: ts.getTime()
         };
-	setTimeout($.post, 1000, "/bp-data", payload, createSuccess, 'json');
+
+        // TODO: handle failure state with failure modal
+	setTimeout(_postBP, 1000, payload);
+    }
+
+    function showSpinnerModal() {
+        spinnerModal.show();
+    }
+
+    function _postBP(payload) {
+	$.post("/bp-data", payload, _postSuccess, 'json').fail(_postFailure);
+    }
+
+    function _postSuccess() {
+        doneModal.show();
+        setTimeout(doneModal.hide, 2000);
+    }
+
+    function _postFailure() {
+	failureModal.show();
     }
 
     $(document).ready(function(){
