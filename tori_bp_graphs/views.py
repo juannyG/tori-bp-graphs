@@ -15,11 +15,16 @@ parser.add_argument('ts')
 
 
 class BPGraphViews(Resource):
+    '''
+    Provide a way to store blood-pressure metrics over time so we can
+    read them later and provide a nice plot for our doctor.
+    '''
     def get(self, *args, **kwargs):
         return list(
             {"systolic": bp.systolic, "diastolic": bp.diastolic, "ts": bp.ts}\
             for bp in BPGraphPoints.objects.all()
         )
+
 
     def post(self):
         args = parser.parse_args()
@@ -27,8 +32,8 @@ class BPGraphViews(Resource):
 	try:
 	    bp_point.full_clean()
 	except errors.ValidationError, e:
-            return e.message, 400
-        bp_point.save()
-        return args, 201
+        return e.message, 400
+    bp_point.save()
+    return args, 201
 
 api.add_resource(BPGraphViews, "/bp-data")
